@@ -6,23 +6,25 @@ import time
 n = 6
 delta_w = 2100/n
 ticks = 256
-w = []
-signal = []
 min_ticks = 1000
 max_ticks = 10000
+
+w = []
+signal = []
+a = []
+fi = []
 times = []
 
 for i in range(1, n + 1):
     w.append(delta_w*i)
+    a.append(random.random())
+    fi.append(random.random())
 
 for i in range(min_ticks, max_ticks+1, 100):
     for t in range(ticks):
         x = []
         for i in range(n):
-            a = random.random()
-            fi = random.random()
-
-            xi = a*math.sin(w[i]*t+fi)
+            xi = a[i]*math.sin(w[i]*t+fi[i])
             x.append(xi)
         signal.append(sum(x))
 
