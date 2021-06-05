@@ -64,19 +64,6 @@ class MainActivity : AppCompatActivity() {
             val mDialog = mBuilder.create()
             mDialog.show()
         }
-
-//        radio_group.setOnCheckedChangeListener { group, checkedId ->
-//            when(checkedId){
-//                R.id.chosen_deadline -> {
-//                    choose_deadline_time.isEnabled = true
-//                    choose_deadline_iters.isEnabled = false
-//                }
-//                R.id.chosen_iters -> {
-//                    choose_deadline_time.isEnabled = false
-//                    choose_deadline_iters.isEnabled = true
-//                }
-//            }
-//        }
         tv_calc.setOnClickListener{Perceptron(sigma,deadline_seconds, deadline_iters)}
     }
 
