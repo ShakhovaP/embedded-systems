@@ -17,14 +17,25 @@ class MainActivity : AppCompatActivity() {
 }
 
     private fun ferma_factorisation(n: Double) :String{
-        var a = ceil(sqrt(n))
+        val startTime = System.currentTimeMillis()
+        var p = 0
+        var q = 0
+        var result: String
+        while(System.currentTimeMillis() !== startTime + 20) {
+            var a = ceil(sqrt(n))
+            while (!isSquare(a.pow(2) - n)){
+                a += 1
+            }
+            var b = sqrt(a.pow(2) - n)
 
-        while (!isSquare(a.pow(2) - n)){
-            a += 1
+            p = (a + b).toInt()
+            q = (a - b).toInt()
         }
-        var b = sqrt(a.pow(2) - n)
-        var result =  "${n.toInt()} = ${(a + b).toInt()} * ${(a - b).toInt()}"
-
+        if (n.toInt() == p*q) {
+            result =  "${n.toInt()} = ${p} * ${q}"
+        } else {
+            result = "Sorry, time is up!"
+        }
         return result
     }
 
