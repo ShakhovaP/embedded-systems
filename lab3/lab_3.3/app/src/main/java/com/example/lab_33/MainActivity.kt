@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import java.lang.Math.abs
-import java.util.Random
+import androidx.appcompat.app.AlertDialog
 import kotlin.math.absoluteValue
 
 
 class MainActivity : AppCompatActivity() {
+
+    var population_size: Int = 0
+
     
     private fun gen_alg(x1_base: Double,
                     x2_base: Double,
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         fun populationZeroFind() {
-            for (i in 0..3) {
+            for (i in 0..population_size) {
                 populationZero.add(mutableListOf())
                 for (j in 0..3) {
                     populationZero[i].add((1..8).random().toDouble())
@@ -157,6 +159,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        val choose_size_population: Button = findViewById(R.id.choose_size_population)
+        choose_size_population.setOnClickListener{
+            val list_of_sizes = arrayOf( "3", "4", "5", "6")
+            val mBuilder = AlertDialog.Builder(this@MainActivity)
+            mBuilder.setTitle("Choose sigma")
+            mBuilder.setSingleChoiceItems(list_of_sizes, -1) { dialogInterface, i ->
+                population_size = list_of_sizes[i].toInt()
+                dialogInterface.dismiss()
+            }
+
+            mBuilder.setNeutralButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+            }
+            val mDialog = mBuilder.create()
+            mDialog.show()
+        }
 
         val result: TextView = findViewById(R.id.show_result)
         val input_a: EditText = findViewById(R.id.input_data_a)
